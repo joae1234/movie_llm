@@ -16,3 +16,5 @@ __pycache__/
 # Pastas de modelos locais (não versionar)
 movie_genre_model/
 movie_genre_tokenizer/
+teste/
+teste2/
