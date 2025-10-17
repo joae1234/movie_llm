@@ -48,15 +48,18 @@ pip install -r requirements.txt
 
 ```
 📦 movie-genre-classifier/
- ┣ 📁 movie_genre_model/          ← modelo local (não versionado)
- ┣ 📁 movie_genre_tokenizer/      ← tokenizer local (não versionado)
- ┣ 📁 out/                        ← será criado automaticamente
+ ┣ 📁 movie_genre_model/          ← baixada automaticamente na primeira execução
+ ┣ 📁 movie_genre_tokenizer/      ← baixada automaticamente na primeira execução
+ ┣ 📁 out/                        ← criada automaticamente
  ┣ 📄 app_gui.py
  ┣ 📄 infer_utils.py
+ ┣ 📄 baixar_movie_genre_model.py
+ ┣ 📄 baixar_movie_genre_tokenizer.py
  ┣ 📄 test.py
  ┣ 📄 requirements.txt
  ┣ 📄 .gitignore
  ┗ 📄 README.md
+
 ```
 
 > ⚠️ As pastas `movie_genre_model/` e `movie_genre_tokenizer/` **devem existir localmente**, mas estão **no `.gitignore`** e **não devem ser commitadas**.  
@@ -142,12 +145,13 @@ O repositório já inclui um `.gitignore` configurado para ignorar:
 - **Transformers (Hugging Face)**
 - **Tkinter**
 - **Matplotlib**
+- **gdown**
 
 ---
 
 ## 🧑‍💻 Autores  
 
-Projeto desenvolvido por [Seu Nome Aqui] 🎓  
+Projeto desenvolvido por João Pedro Soares dos Santos 🎓  
 
 ---
 
