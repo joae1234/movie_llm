@@ -1,17 +1,38 @@
 # infer_utils.py
+
 import os
+import subprocess
+import sys
 import pickle
 from typing import List, Dict, Tuple, Union
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import matplotlib.pyplot as plt
-
 MODEL_DIR = "movie_genre_model"
 TOKENIZER_DIR = "movie_genre_tokenizer"
 METADATA_PATH = os.path.join("out", "metadata.pkl")  # opcional, se existir terá labels
 
 DEFAULT_GENRES = ["Ação", "Comédia", "Drama", "Ficção científica", "Terror"]
+def ensure_model_and_tokenizer_present():
+    """Garante que as pastas do modelo e tokenizer existam e estejam preenchidas."""
+    # Model
+    if not os.path.exists(MODEL_DIR) or len(os.listdir(MODEL_DIR)) == 0:
+        print(f"📥 Pasta '{MODEL_DIR}' ausente ou vazia. Baixando modelo...")
+        subprocess.run([sys.executable, "baixar_movie_genre_model.py"], check=True)
+    else:
+        print(f"✅ Pasta '{MODEL_DIR}' já contém arquivos.")
+
+    # Tokenizer
+    if not os.path.exists(TOKENIZER_DIR) or len(os.listdir(TOKENIZER_DIR)) == 0:
+        print(f"📥 Pasta '{TOKENIZER_DIR}' ausente ou vazia. Baixando tokenizer...")
+        subprocess.run([sys.executable, "baixar_movie_genre_tokenizer.py"], check=True)
+    else:
+        print(f"✅ Pasta '{TOKENIZER_DIR}' já contém arquivos.")
+
+
+# === Chama antes de carregar modelo ===
+ensure_model_and_tokenizer_present()
 
 def _ensure_metadata_exists(default_genres: List[str] = DEFAULT_GENRES, path: str = METADATA_PATH) -> dict:
     """Garante que out/metadata.pkl exista. Se não existir, cria com default_genres."""
